@@ -1,3 +1,4 @@
+import { Cell } from "./Cell.js";
 
 /**
 * Class Board
