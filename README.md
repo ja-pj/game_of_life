@@ -1,2 +1,2 @@
 # game_of_life
-Conway's Game of Life
+Web in wich can be played Conway's Game of Life.
