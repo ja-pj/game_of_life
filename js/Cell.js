@@ -1,7 +1,7 @@
 /**
 * Class Cell
 */
-class Cell{
+export class Cell{
     #state=null;
     #nextState=null;    
 	#neighbours=null;

@@ -2,7 +2,7 @@
 /**
 * Class Board
 */
-class Board{
+export class Board{
 	#rows=null;
     #columns=null;
     #cells=null;
