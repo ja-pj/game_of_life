@@ -1,0 +1,18 @@
+.board {
+  width: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  width: 10vw;
+  aspect-ratio: 1;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.cell--alive {
+  background: green;
+}
+
+/*# sourceMappingURL=style.css.map */
