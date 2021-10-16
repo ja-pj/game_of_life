@@ -1,0 +1,10 @@
+.cell{
+    width: 10vw;
+    aspect-ratio: 1;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
+
+.cell--alive{
+    background: green;
+}
