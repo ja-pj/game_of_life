@@ -7,10 +7,12 @@ export class Cell{
 	#neighbours=null;
     #token=null;
     #node = null;
+    #age=null;
+    
 
-    #populated = 3;
-    #overpopulated = 4;
-    #underpopulated = 1;
+    static populated = 3;
+    static overpopulated = 4;
+    static underpopulated = 1;
 
     /**
     * Creates an instance of the class Cell
@@ -122,6 +124,23 @@ export class Cell{
     }
 
 
+    /**
+    * Getter for #age
+    * @returns {number} #age
+    */
+     get age(){
+        return this.#age;
+    }
+    
+    /**
+    * Setter for #age
+    * @param {number} age
+    */
+    set age(age){
+        this.#age=age>10?10:age;
+        this.node.dataset.age = this.age;
+    }
+
 //#endregion
 
     die(){
@@ -144,30 +163,40 @@ export class Cell{
     }
 
 
-    changetoNextState(neighbours){        
+    changetoNextState(neighbours){  
+        if(this.nextState){
+            this.age += 1;
+        }else{
+            this.age = 0;
+        }   
         this.state = this.nextState;
+    }
+
+    toggleState(){
+        this.state = this.isAlive()?false:true;
     }
 
     setNextState(){
         let aliveNeighbours = this.aliveNeighbours();
-        if(!this.isAlive() && aliveNeighbours===this.#populated){
+        if(!this.isAlive() && aliveNeighbours===Cell.populated){
             this.nextState = true;
-        }else if(this.isAlive() && (aliveNeighbours<=this.#underpopulated || aliveNeighbours>=this.#overpopulated)){
+        }else if(this.isAlive() && (aliveNeighbours<=Cell.underpopulated || aliveNeighbours>=Cell.overpopulated)){
             this.nextState = false;
         }else if(this.isAlive()){
             this.nextState = true;
         }
     }
 
-    
+
     /**
      * Generates a cell element for the doom
      * @returns {Object}
      */
     generateNode(){
         this.node = document.createElement('div');
-        this.node.classList.add('cell');
-        this.token = this.token;        
+        this.node.classList.add('cell','cell--dead');
+        this.token = this.token;
+        this.age = 0;      
         return this.node;
     }
     

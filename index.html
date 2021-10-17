@@ -4,10 +4,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Conway's Game of Life</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <script src="./js/main.js"></script>
+<body class="body">
+    <header class="title">
+        <h1 class="title__text"><p>Conway's</p><p>Game of Life</p></h1>
+    </header>
+    <main class="main">
+        <div class="wrapper"></div>
+        <div class="menu">
+            <div class="button button--step">Step</div>
+            <div class="button button--play"></div>
+            <div class="button button--reset">Reset</div>
+        </div>
+        <div class="menu-pop">
+            <div class="menu-pop__toggle"><div>></div></div>
+            <div class="menu-pop__wrapper menu-pop__wrapper--sliders">
+                <div class="menu-pop__wrapper">
+                    <span>Speed</span>
+                    <div class="range-slider">
+                        <input class="range-slider__range range-slider__range--time" type="range" value="50" min="1" max="100">
+                    </div> 
+                </div>   
+                <div class="menu-pop__wrapper">
+                    <span>Zoom</span>
+                    <div class="range-slider">
+                        <input class="range-slider__range range-slider__range--cells" type="range" value="200" min="100" max="300">
+                    </div> 
+                </div>
+                <div class="menu-pop__rejilla">
+                    <div class="no-border"></div>
+                    <div class="no-border"></div>
+                    <div class="no-border"></div>
+                    <div class="no-border"></div>
+                    <div class="no-border"></div>
+                    <div class="no-border"></div>
+                    <div class="no-border"></div>
+                    <div class="no-border"></div>
+                    <div class="no-border"></div>
+                </div>
+            </div>
+            <div class="menu-pop__wrapper menu-pop__wrapper--numbers">
+                <div class="menu-pop_wrapper">
+                <label>Populated:</label>
+                <input type="number" min="0" max="10" placeholder="3" value="3" class="menu-pop__input menu-pop__input--populated">
+            </div> 
+                <div class="menu-pop_wrapper">
+                <label>Overpopulated:</label>
+                <input type="number" min="0" max="10" placeholder="4" value="4" class="menu-pop__input menu-pop__input--overpopulated">
+            </div> 
+                <div class="menu-pop_wrapper">
+                <label>Underpopulated:</label>
+                <input type="number" min="0" max="10" placeholder="1" value="1" class="menu-pop__input menu-pop__input--underpopulated">
+            </div> 
+            </div>            
+        </div>
+    </main>
+    <footer></footer>
+    <script type="module" src="./index.js"></script>
 </body>
 </html>

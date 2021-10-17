@@ -1,5 +1,8 @@
 .board{
-    width: 50vw;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    transform: scale(2);
+    border-left: 1px solid black;
+    border-top: 1px solid black;
 }

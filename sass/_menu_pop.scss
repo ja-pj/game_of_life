@@ -1,0 +1,96 @@
+
+
+.menu-pop{
+    position: absolute;
+    width: 100%;
+    top: 85%;    
+    background: $color-primary-50;
+    display: flex;
+    justify-content: center;
+    gap:3em;
+    align-items: center;
+    padding: 1em;
+    transform: translateY(0);
+    transition: transform 150ms ease;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.menu-pop--on{
+    transform: translateY(-100%);
+    transition: transform 150ms ease;
+}
+
+.menu-pop__toggle{
+    position: absolute;
+    left:50%;
+    top: 0;
+    transform: translate(-50%,-100%);
+    background: $color-primary;
+    width: 3em;
+    line-height: .6;
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow .250 ease;
+    &:hover{
+        transition: box-shadow .250 ease;
+        box-shadow: 0 0 5px $textColor;
+    }
+    &>div{
+        transform: rotate(-90deg);
+        padding: .2em 0;
+        font-size: .8em;        
+    }
+    &.on{
+        transform: translate(-50%,0%);
+        &>div{
+            transform: rotate(90deg);
+        } 
+    }
+}
+
+.menu-pop__wrapper--numbers{
+    &>div{
+        
+            display: flex;
+            justify-content: space-between;
+            width: 12em;
+            margin: .3em;
+    }
+}
+
+.menu-pop__input{
+    width: 3em;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0; 
+    -webkit-appearance: none;
+}
+
+.menu-pop__rejilla{
+    width: 2em;
+    height: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    background: $color-secondary;
+    margin: 1em;
+    border-radius: 30%;
+    cursor: pointer;
+    border: 2px dashed $textColor;
+    box-sizing: border-box;
+    transition: box-shadow .250 ease;
+    &:hover{
+        box-shadow: 0px 0px 10px $textColor;
+        transition: box-shadow .250 ease;
+    }
+    
+    &>div{
+        box-sizing: border-box;
+        border: 1px solid $textColor;
+        width: 33%;
+        height: 33%;
+        &.no-border{
+            border: none;
+        }
+    }
+}

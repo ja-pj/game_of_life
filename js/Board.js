@@ -1,4 +1,5 @@
 import { Cell } from "./Cell.js";
+import { Timer } from "./Timer.js";
 
 /**
 * Class Board
@@ -9,8 +10,9 @@ export class Board{
     #cells=null;
     #node = null;
     #pattern=null;
-    #state=null;
-    #timer=null;    
+    #timer=null;
+    #snapshot=null;
+        
     
 
     /**
@@ -19,11 +21,17 @@ export class Board{
     * @param {Number} columns
     * @param {Array<Cell>} cells 
     */
-    constructor(rows,columns){
-		this.rows=rows;
-        this.columns=columns;
+    constructor(config){
+        this.calculateRowsAndColumns(config.parent,config.nCells);
         this.cells=this.generateBoardCells();
         this.node = this.generateNode();
+        config.parent.append(this.node);
+        this.#node.style.transform = 'scale(2)';
+        this.#timer = new Timer(Infinity,config.time,_=>{
+            this.cycle();
+        });
+        this.pattern = config.pattern;
+        this.displayPattern(this.pattern);
     }
 //#region Getters & Setters
 
@@ -92,42 +100,7 @@ export class Board{
     set node(node){
         this.#node=node;
     }
-
-    /**
-    * Getter for #timer
-    * @returns {*} #timer
-    */
-     get timer(){
-        return this.#timer;
-    }
-    
-    /**
-    * Setter for #timer
-    * @param {*} timer
-    */
-    set timer(timer){
-        this.#timer=timer;
-    }
-    
-    
-    
-    /**
-    * Getter for #state
-    * @returns {*} #state
-    */
-    get state(){
-        return this.#state;
-    }
-    
-    /**
-    * Setter for #state
-    * @param {*} state
-    */
-    set state(state){
-        this.#state=state;
-    }
-    
-    
+  
     
     /**
     * Getter for #pattern
@@ -145,6 +118,29 @@ export class Board{
         this.#pattern=pattern;
     }
 
+    /**
+    * Getter for #snapshot
+    * @returns {*} #snapshot
+    */
+     get snapshot(){
+        return this.#snapshot;
+    }
+    
+    /**
+    * Setter for #snapshot
+    * @param {*} snapshot
+    */
+    set snapshot(snapshot){
+        this.#snapshot=snapshot;
+    }
+
+    /**
+    * Getter for #timer
+    * @returns {*} #timer
+    */
+     get timer(){
+        return this.#timer;
+    }
 
 //#endregion
 
@@ -257,12 +253,18 @@ export class Board{
             [cell.dataset.row,cell.dataset.column] = Object.values(this.pos2xy(i));
         });
         this.node.append(...this.cells.map(c=>c.node));
+        this.node.addEventListener('click',e=>{
+            if(e.target.classList.contains('cell')){
+                this.cells[this.xy2pos(Number(e.target.dataset.row),Number(e.target.dataset.column))].toggleState();
+                this.snapshot = this.shot();
+            }
+        });
         return this.node;
     }
 
     displayPattern(pattern,pos=null){
         if(pos === null){
-            pos = {row:0,column:0};
+            pos = {row:Math.floor(this.rows/2-pattern.length/2),column:Math.floor(this.columns/2-pattern[0].length/2)};
         }else if(typeof(pos)==='number'){
             pos = this.pos2xy(pos);
         }
@@ -289,6 +291,14 @@ export class Board{
         this.prepareUpdate();
         this.updateBoard();
     }
+
+    play(){
+        this.#timer.start();
+    }
+
+    pause(){
+        this.#timer.stop();
+    }
     
     /**
      * Removes the board element from the doom
@@ -298,9 +308,32 @@ export class Board{
     }
 
     reset(){
-        this.cells.forEach(cell=>{
-            cell.token = null;
+        if(this.snapshot){
+            this.loadSnapshot(this.snapshot);
+        }else if(this.pattern){
+            this.displayPattern(this.pattern);
+        }else{
+            this.cells.forEach(cell=>{
+                cell.token = null;
+            });
+        }        
+    }
+
+    shot(){
+        return this.cells.map(cell=>{return cell.isAlive()});
+    }
+
+    loadSnapshot(snapshot){
+        this.cells.forEach((cell,i)=>{
+            cell.state = snapshot[i];
         });
+    }
+
+
+    calculateRowsAndColumns(parent, nCells){
+        let max = Math.sqrt((parent.offsetWidth*parent.offsetHeight)/nCells);
+        this.rows = Math.floor(parent.offsetHeight/max);
+        this.columns = Math.floor(parent.offsetWidth/max);
     }
 
 }
