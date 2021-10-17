@@ -199,6 +199,11 @@ export class Cell{
         this.age = 0;      
         return this.node;
     }
+
+    reset(){
+        this.state = false;
+        this.age=0;
+    }
     
 }
 

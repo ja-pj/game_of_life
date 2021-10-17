@@ -199,43 +199,43 @@ input::-moz-focus-outer {
   background: #38383d;
 }
 
-.cell[data-age="1"] {
+.cell--alive[data-age="1"] {
   background: #96fa96;
 }
 
-.cell[data-age="2"] {
+.cell--alive[data-age="2"] {
   background: #7ffd7f;
 }
 
-.cell[data-age="3"] {
+.cell--alive[data-age="3"] {
   background: #41fd41;
 }
 
-.cell[data-age="4"] {
+.cell--alive[data-age="4"] {
   background: #b9fd7a;
 }
 
-.cell[data-age="5"] {
+.cell--alive[data-age="5"] {
   background: #c0f52e;
 }
 
-.cell[data-age="6"] {
+.cell--alive[data-age="6"] {
   background: #f7e333;
 }
 
-.cell[data-age="7"] {
+.cell--alive[data-age="7"] {
   background: #f8c63c;
 }
 
-.cell[data-age="8"] {
+.cell--alive[data-age="8"] {
   background: #f8a324;
 }
 
-.cell[data-age="9"] {
+.cell--alive[data-age="9"] {
   background: #ff7300;
 }
 
-.cell[data-age="10"] {
+.cell--alive[data-age="10"] {
   background: red;
 }
 

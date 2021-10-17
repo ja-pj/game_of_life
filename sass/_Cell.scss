@@ -18,43 +18,43 @@
     background: $color-secondary;
 }
 
-.cell[data-age='1']{
+.cell--alive[data-age='1']{
     background: rgb(150, 250, 150);
 }
 
-.cell[data-age='2']{
+.cell--alive[data-age='2']{
     background: rgb(127, 253, 127);
 }
 
-.cell[data-age='3']{
+.cell--alive[data-age='3']{
     background: rgb(65, 253, 65);
 }
 
-.cell[data-age='4']{
+.cell--alive[data-age='4']{
     background: rgb(185, 253, 122);
 }
 
-.cell[data-age='5']{
+.cell--alive[data-age='5']{
     background: rgb(192, 245, 46);
 }
 
-.cell[data-age='6']{
+.cell--alive[data-age='6']{
     background: rgb(247, 227, 51);
 }
 
-.cell[data-age='7']{
+.cell--alive[data-age='7']{
     background: rgb(248, 198, 60);
 }
 
-.cell[data-age='8']{
+.cell--alive[data-age='8']{
     background: rgb(248, 163, 36);
 }
 
-.cell[data-age='9']{
+.cell--alive[data-age='9']{
     background: rgb(255, 115, 0);
 }
 
-.cell[data-age='10']{
+.cell--alive[data-age='10']{
     background: rgb(255, 0, 0);
 }
 

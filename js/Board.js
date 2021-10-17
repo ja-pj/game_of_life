@@ -308,15 +308,14 @@ export class Board{
     }
 
     reset(){
-        if(this.snapshot){
+        this.cells.forEach(cell=>{
+            cell.reset();
+        });
+        if(this.snapshot !== null){
             this.loadSnapshot(this.snapshot);
-        }else if(this.pattern){
-            this.displayPattern(this.pattern);
-        }else{
-            this.cells.forEach(cell=>{
-                cell.token = null;
-            });
-        }        
+        }else if(this.pattern !== null){
+            this.displayPattern(this.pattern);            
+        }
     }
 
     shot(){
