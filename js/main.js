@@ -5,7 +5,7 @@ import { Cell } from "./Cell.js";
 let wrapper = document.querySelector('.wrapper');
 let config = {
     parent: wrapper,
-    nCells : 50000,//aproximado
+    nCells : 10000,//aproximado
     time: .5,
     pattern: [[0,1,0],[0,1,0],[0,1,0]],
 }
